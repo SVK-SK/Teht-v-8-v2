@@ -3,40 +3,23 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Ylatunniste from "./components/Ylatunniste";
-import GlobalState from "./context/GlobalState";
-import Puhelintiedot from "./components/Puhelintiedot";
-import MuokkaaPuhelintieto from "./components/MuokkaaPuhelintieto";
 import Tietoa from "./pages/Tietoa";
 import UrheilijaLomake from "./components/UrheilijaLomake";
-import Urheilijat from "./components/Urheilijat.jsx";
+import Urheilijat from "./components/Urheilijat";
 
 function App() {
   return (
-    <GlobalState>
-      <BrowserRouter>
-        <div className="App">
-          <Ylatunniste turvataso="keskisuuri" />
+    <BrowserRouter>
+      <div className="App">
+        <Ylatunniste />
 
-          <div className="container">
-            <Routes>
-              {/* Etusivu näyttää urheilijan lisäyslomakkeen */}
-              <Route path="/" element={<Urheilijat />} />
-
-              <Route
-                path="/puhelintieto/muokkaa/:id"
-                element={<MuokkaaPuhelintieto />}
-              />
-
-              {/* Tietoa-sivu */}
-              <Route path="/tietoa" element={<Tietoa />} />
-
-              {/* Urheilijan lisäyslomake */}
-              <Route path="/urheilija/lisaa" element={<UrheilijaLomake />} />
-            </Routes>
-          </div>
-        </div>
-      </BrowserRouter>
-    </GlobalState>
+        <Routes>
+          <Route path="/" element={<Urheilijat />} />
+          <Route path="/urheilija/lisaa" element={<UrheilijaLomake />} />
+          <Route path="/tietoa" element={<Tietoa />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
